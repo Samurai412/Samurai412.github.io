@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RESISTANCE LABS | SYSTEM_READY</title>
+    <style>
+        /* CORE AESTHETIC: TERMINAL STYLE */
+        body {
+            background-color: #000000;
+            color: #00FF41; /* Classic Terminal Green */
+            font-family: 'Courier New', Courier, monospace;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            padding: 20px;
+            text-align: left;
+        }
+
+        .container {
+            max-width: 800px;
+            width: 100%;
+            border: 1px solid #333;
+            padding: 40px;
+            box-shadow: 0 0 20px rgba(0, 255, 65, 0.1);
+        }
+
+        /* TYPOGRAPHY */
+        h1 {
+            font-size: 24px;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            border-bottom: 2px solid #00FF41;
+            padding-bottom: 10px;
+            margin-bottom: 30px;
+        }
+
+        p {
+            font-size: 16px;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .highlight {
+            background-color: #00FF41;
+            color: #000;
+            padding: 2px 5px;
+            font-weight: bold;
+        }
+
+        /* BUTTONS / LINKS */
+        a.button {
+            display: inline-block;
+            margin-top: 20px;
+            padding: 15px 30px;
+            border: 1px solid #00FF41;
+            color: #00FF41;
+            text-decoration: none;
+            font-weight: bold;
+            transition: all 0.3s ease;
+        }
+
+        a.button:hover {
+            background-color: #00FF41;
+            color: #000;
+            cursor: pointer;
+        }
+
+        /* CURSOR BLINK ANIMATION */
+        .cursor {
+            display: inline-block;
+            width: 10px;
+            height: 20px;
+            background-color: #00FF41;
+            animation: blink 1s infinite;
+            vertical-align: bottom;
+        }
+
+        @keyframes blink {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0; }
+        }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>> RESISTANCE_LABS.TECH</h1>
+        
+        <div id="terminal-text">
+            </div>
+        <div class="cursor"></div>
+
+        <br><br>
+        
+        <a href="/theboringapp" class="button">[ EXECUTE: THE_BORING_APP ]</a>
+    </div>
+
+    <script>
+        const textToType = [
+            "ESTABLISHING SECURE CONNECTION...",
+            "Loading manifesto.txt...",
+            "...",
+            "THE ATTENTION ECONOMY IS A WAR. YOU ARE LOSING.",
+            "Your focus is being harvested by algorithms designed to addict you.",
+            "Resistance Labs builds the weapons you need to fight back.",
+            "Reclaim your agency. Exit the Skinner Box.",
+            "...",
+            "STATUS: ONLINE."
+        ];
+
+        const outputDiv = document.getElementById('terminal-text');
+        let lineIndex = 0;
+        let charIndex = 0;
+
+        function typeWriter() {
+            if (lineIndex < textToType.length) {
+                if (charIndex < textToType[lineIndex].length) {
+                    // If it's the start of a line, create a paragraph
+                    if (charIndex === 0) {
+                        const p = document.createElement('p');
+                        p.id = 'line-' + lineIndex;
+                        outputDiv.appendChild(p);
+                    }
+                    // Add char to the current paragraph
+                    document.getElementById('line-' + lineIndex).innerHTML += textToType[lineIndex].charAt(charIndex);
+                    charIndex++;
+                    setTimeout(typeWriter, 30); // Typing speed
+                } else {
+                    lineIndex++;
+                    charIndex = 0;
+                    setTimeout(typeWriter, 300); // Pause between lines
+                }
+            }
+        }
+
+        // Start typing on load
+        window.onload = typeWriter;
+    </script>
+</body>
+</html>
